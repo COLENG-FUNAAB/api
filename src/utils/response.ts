@@ -9,7 +9,7 @@ interface ResponseObject{
 export const success = (response: ResponseObject, res: Response)=>{
     const {message, payload, status} = response;
     res.status(status || 200).json({
-        message, payload, status
+        message: message|| "Successful" , payload, status
     })
 }
 
