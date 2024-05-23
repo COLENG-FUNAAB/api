@@ -6,6 +6,7 @@ import Container from 'typedi';
 import StudentController from './src/controllers/StudentControllers';
 import DepartmentController from './src/controllers/DepartmentController';
 import TransactionController from './src/controllers/TransactionController';
+import NutecController from './src/controllers/NutecController';
 require("dotenv").config()
 
 const app = express();
@@ -37,6 +38,10 @@ const departmentController = Container.get(DepartmentController);
 app.get("/departments", (req: Request, res: Response, next: NextFunction)=> departmentController.getAll(req, res))
 app.get("/add-departments", (req: Request, res: Response, next: NextFunction)=> departmentController.addAllDepartments(req, res))
 
+
+const nutecControler = Container.get(NutecController);
+app.post("/nutec", (req: Request, res: Response, next: NextFunction)=> nutecControler.register(req, res))
+app.get("/nutec", (req: Request, res: Response, next: NextFunction)=> nutecControler.getAll(req, res))
 
 // Transactions
 const transactionController = Container.get(TransactionController);
